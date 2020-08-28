@@ -15,8 +15,15 @@ const createNode = (col, row) => ({
     row,
     distance: Infinity,
     isVisited: false,
+    isWall: false,
 })
+
+const updateGridWall = (grid, col, row) => {
+    grid[row][col]["isWall"] = !grid[row][col]["isWall"];
+    return grid;
+}
 
 export {
     createInitialGrid,
+    updateGridWall,
 }
