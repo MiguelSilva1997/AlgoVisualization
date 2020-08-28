@@ -1,13 +1,13 @@
+.board {
+    margin: 1%;
+}
+
 .header {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
     background-color: teal;
-}
-
-.title {
-    color: white;
 }
 
 .startButton {
@@ -18,7 +18,10 @@
     cursor: pointer;
     font-weight: bold;
     font-size: 1em;
-    float: right;
     margin: 5%;
     padding: 1%;
+}
+
+.title {
+    color: white;
 }
