@@ -1,0 +1,24 @@
+.header {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: teal;
+}
+
+.title {
+    color: white;
+}
+
+.startButton {
+    background-color: lightseagreen;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1em;
+    float: right;
+    margin: 5%;
+    padding: 1%;
+}
