@@ -14,6 +14,8 @@ const createNode = (col, row) => ({
     col,
     row,
     distance: Infinity,
+    isEnd: false,
+    isStart: false,
     isVisited: false,
     isWall: false,
 })
@@ -23,7 +25,13 @@ const updateGridWall = (grid, col, row) => {
     return grid;
 }
 
+const updateStartAndEnd = (grid, placeNode, row, col) => {
+    grid[row][col][placeNode] = !grid[row][col][placeNode];
+    return grid;
+}
+
 export {
     createInitialGrid,
     updateGridWall,
+    updateStartAndEnd,
 }

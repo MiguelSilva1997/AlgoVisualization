@@ -8,3 +8,9 @@
 .wall {
     background-color: lightslategray;
 }
+
+.icon {
+    size: 0.6em;
+    text-align: center;
+    display: flex;
+}
