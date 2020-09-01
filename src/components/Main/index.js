@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Node from '../Node'
 import { createInitialGrid, updateGridWall, updateStartAndEnd } from '../../services/board';
+import { dijkstra, getNodesInPathOrder } from '../../services/algorithm';
 import { GiRunningNinja, GiPodiumWinner } from 'react-icons/gi';
 
 import "./main.css"
@@ -13,7 +14,7 @@ const Main = () => {
     const [endCoord, setEndCoord] = useState([])
 
     useEffect(() => {
-        setGrid(createInitialGrid())
+        setGrid(createInitialGrid());
     }, []);
 
     const handleDrop = (row, col) => {
@@ -28,14 +29,48 @@ const Main = () => {
 
     const handleMouseEnter = (row, col) => {
         if (!isMousePressed) return;
+        if (startCoord === [row, col]) return;
+        if (endCoord === [row, col]) return;
         const newGrid = updateGridWall(grid, col, row);
         setGrid(newGrid);
     }
 
     const handleMousePressed = (row, col) => {
+        if (startCoord === [row, col]) return;
+        if (endCoord === [row, col]) return;
         const newGrid = updateGridWall(grid, col, row);
         toggleMousePressed(true);
         setGrid(newGrid);
+    }
+
+    const animateDijkstra = (visitedNodes, shortestPath) => {
+        for (let i = 0; i <= visitedNodes.length; i++) {
+            if (i === visitedNodes.length) {
+              setTimeout(() => {
+                animateShortestPath(shortestPath);
+              }, 10 * i);
+              return;
+            }
+            setTimeout(() => {
+              const node = visitedNodes[i];
+              document.getElementById(`node-${node.row}-${node.col}`).className = 'node node-visited';
+            }, 10 * i);
+          }
+    };
+
+    const animateShortestPath = (shortestPath) => {
+        for (let i = 0; i < shortestPath.length; i++) {
+            setTimeout(() => {
+              const node = shortestPath[i];
+              document.getElementById(`node-${node.row}-${node.col}`).className = 'node node-shortest-path';
+            }, 50 * i);
+        }
+    }
+
+    const visualizeDijkstra = () => {
+        const startNode = grid[startCoord[0]][startCoord[1]];
+        const { visitedNodes, shortestPath } = dijkstra(startNode, grid);
+        animateDijkstra(visitedNodes, shortestPath);
     }
 
     return(
@@ -83,7 +118,11 @@ const Main = () => {
             }
           </div>
           <div className="menu">
-            <button className="startButton">
+            <button
+                className="startButton"
+                onClick={visualizeDijkstra}
+                disabled={startCoord.length === 0 && endCoord.length === 0}
+            >
                 Run Dijkstra Algorithm
             </button>
           </div>

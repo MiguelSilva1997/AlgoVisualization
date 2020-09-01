@@ -23,13 +23,14 @@ const Node = (props) => {
     }
 
     if (isStart) {
-        icon = <GiRunningNinja className="icon" />
+        icon = <GiRunningNinja className="icon" />;
+        secondClass = "start";
     }
 
     if (isEnd) {
         icon = <GiPodiumWinner className="icon" />
+        secondClass = "end";
     }
-    console.log(isStart)
 
     return(
         <div

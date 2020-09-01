@@ -11,6 +11,7 @@ const createInitialGrid = (rows = 20, cols = 50) => {
 }
 
 const createNode = (col, row) => ({
+    cssClass: "",
     col,
     row,
     distance: Infinity,
@@ -18,6 +19,7 @@ const createNode = (col, row) => ({
     isStart: false,
     isVisited: false,
     isWall: false,
+    previousNode: null,
 })
 
 const updateGridWall = (grid, col, row) => {
