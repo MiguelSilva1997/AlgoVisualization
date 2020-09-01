@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Node from '../Node'
 import { createInitialGrid, updateGridWall, updateStartAndEnd } from '../../services/board';
-import { dijkstra, getNodesInPathOrder } from '../../services/algorithm';
+import { dijkstra } from '../../services/algorithm';
 import { GiRunningNinja, GiPodiumWinner } from 'react-icons/gi';
 
 import "./main.css"
@@ -68,8 +68,7 @@ const Main = () => {
     }
 
     const visualizeDijkstra = () => {
-        const startNode = grid[startCoord[0]][startCoord[1]];
-        const { visitedNodes, shortestPath } = dijkstra(startNode, grid);
+        const { visitedNodes, shortestPath } = dijkstra(grid);
         animateDijkstra(visitedNodes, shortestPath);
     }
 

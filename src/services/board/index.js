@@ -29,6 +29,9 @@ const updateGridWall = (grid, col, row) => {
 
 const updateStartAndEnd = (grid, placeNode, row, col) => {
     grid[row][col][placeNode] = !grid[row][col][placeNode];
+    if (placeNode == "isStart") {
+        grid[row][col].distance = 0; 
+    }
     return grid;
 }
 

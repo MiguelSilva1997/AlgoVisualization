@@ -1,8 +1,5 @@
-const dijkstra = (startNode, grid) => {
+const dijkstra = (grid) => {
     const visitedNodes = [];
-    const { row, col } = startNode;
-
-    grid[row][col]["distance"] = 0;
 
     let unvisitedNodes = getNodes(grid);
 
@@ -68,5 +65,4 @@ const getNodesInPathOrder = (currentNode, shortestPath = []) => {
 
 export {
     dijkstra,
-    getNodesInPathOrder,
 }
